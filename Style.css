@@ -8,3 +8,4 @@ nav.open { left: 0; }
 nav a { display: block; padding: 1rem; color: #0066cc; text-decoration: none; border-bottom: 1px solid #eee; }
 .deal-card { background: white; margin: 0.5rem 0; padding: 1rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,.1); }
 @media (max-width: 600px) { nav { width: 100%; } }
+nav.hidden { left: -200px; } /* cache le menu */
