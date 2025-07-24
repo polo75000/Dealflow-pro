@@ -3,28 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>DealFlow Pro</title>
+    <title>DealFlow Pro – SaaS LBO & PME</title>
     <link rel="stylesheet" href="style.css">
     <link rel="manifest" href="manifest.json">
 </head>
 <body>
+    <!-- Menu hamburger -->
     <header>
         <h1>🎯 DealFlow Pro</h1>
-        <p>Analyse PME & LBO en 3 clics</p>
+        <button id="menuToggle">☰</button>
     </header>
 
+    <nav id="sideMenu" class="hidden">
+        <a href="#accueil">🏠 Accueil</a>
+        <a href="#simulateur">💰 Simulateur</a>
+        <a href="#deals">📊 Deals</a>
+        <a href="#contact">📧 Contact</a>
+    </nav>
+
+    <!-- Section Accueil -->
+    <section id="accueil">
+        <h2>🚀 Trouvez votre PME avec LBO possible</h2>
+        <button onclick="scrollToSection('simulateur')">🧮 Simuler un LBO</button>
+    </section>
+
+    <!-- Simulateur -->
+    <section id="simulateur">
+        <h3>💰 Simulateur crédit vendeur</h3>
+        <label>Prix d'achat :</label>
+        <input id="price" type="number" placeholder="2 000 000">
+        <label>EBITDA :</label>
+        <input id="ebitda" type="number" placeholder="400 000">
+        <button onclick="simulate()">Calculer</button>
+        <div id="resultSim"></div>
+    </section>
+
+    <!-- Filtres dynamiques -->
+    <section id="filters">
+        <h3>🔍 Filtres</h3>
+        <select id="regionFilter" onchange="filterDeals()">
+            <option>Région...</option>
+            <option>Île-de-France</option>
+            <option>Auvergne-Rhône-Alpes</option>
+        </select>
+        <select id="sectorFilter" onchange="filterDeals()">
+            <option>Secteur...</option>
+            <option>Industrie</option>
+            <option>SaaS</option>
+        </select>
+    </section>
+
+    <!-- Liste des deals -->
     <section id="deals">
-        <!-- Contenu généré par JavaScript -->
+        <!-- Généré par JavaScript -->
     </section>
 
     <script src="app.js"></script>
 </body>
 </html>
-<!-- Ajoutez ces 3 lignes -->
-<script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js');
-  }
-</script>
-</body>
-</html>
+
