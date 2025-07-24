@@ -13,24 +13,24 @@
         <button onclick="toggleMenu()">☰</button>
     </header>
 
-    <nav id="menu" class="hidden">
+    <nav id="sideMenu" class="hidden">
         <a href="#dashboard">🏠 Dashboard</a>
+        <a href="#filters">🔍 Filtres</a>
         <a href="#simulateur">💰 Simulateur</a>
-        <a href="#deals">📊 Deals</a>
     </nav>
 
     <!-- Filtres dynamiques -->
     <section id="filters">
-        <select id="region" onchange="loadDeals()">
+        <select id="regionFilter" onchange="loadDeals()">
             <option>Région...</option>
             <option>Île-de-France</option>
             <option>Auvergne-Rhône-Alpes</option>
         </select>
         <input type="number" id="minCA" placeholder="CA min" onchange="loadDeals()">
-        <button onclick="loadDeals()">🔍 Filtrer</button>
+        <button onclick="loadDeals()">Filtrer</button>
     </section>
 
-    <!-- Simulateur -->
+    <!-- Simulateur LBO -->
     <section id="simulateur">
         <h3>💰 Simulateur LBO</h3>
         <input type="number" id="price" placeholder="Prix d'achat">
