@@ -1,16 +1,39 @@
 
-// Données réelles (mock)
-const DEALS = [
-    { id: 1, name: "SARL MécaPro", region: "Auvergne", sector: "Industrie", ca: 3200000, ebitda: 680000, credit_ready: true },
-    { id: 2, name: "SaaS CloudPro", region: "Île-de-France", sector: "SaaS", ca: 1500000, ebitda: 420000, credit_ready: true }
-];
+// Clés API sandbox (gratuites)
+const PAPPERS_KEY = "votre_cle_pappers";
+const API_BASE = "https://api.pappers.fr/v2";
 
-// Menu mobile
-document.getElementById('menuToggle').addEventListener('click', () => {
-    document.getElementById('sideMenu').classList.toggle('open');
-});
+// Données dynamiques
+async function loadDeals() {
+    document.getElementById('dealList').innerHTML = "Chargement...";
+    try {
+        const params = {
+            api_token: PAPPERS_KEY,
+            par_page: 10,
+            resultat_min: 300000
+        };
+        const res = await fetch(`${API_BASE}/recherche?${new URLSearchParams(params)}`);
+        const data = await res.json();
+        renderDeals(data.entreprises || []);
+    } catch (e) {
+        // Mode démo si API indisponible
+        renderDeals([
+            { nom: "SARL MécaPro", region: "Auvergne", chiffre_affaires: 3200000, resultat: 680000 },
+            { nom: "SaaS CloudPro", region: "IDF", chiffre_affaires: 1500000, resultat: 420000 }
+        ]);
+    }
+}
 
-// Simulateur
+function renderDeals(deals) {
+    document.getElementById('dealList').innerHTML = deals.map(d => `
+        <div class="deal-card">
+            <h3>${d.nom}</h3>
+            <p>${d.region} • CA: €${d.chiffre_affaires.toLocaleString()} • EBITDA: €${d.resultat.toLocaleString()}</p>
+            <button onclick="contactVendeur('${d.siren || d.id}')">📞 Contacter</button>
+        </div>
+    `).join('');
+}
+
 function simulate() {
     const price = Number(document.getElementById('price').value);
     const ebitda = Number(document.getElementById('ebitda').value);
@@ -22,23 +45,8 @@ function simulate() {
     `;
 }
 
-// Filtres dynamiques
-function filterDeals() {
-    const region = document.getElementById('regionFilter').value;
-    const sector = document.getElementById('sectorFilter').value;
-    const filtered = DEALS.filter(d => 
-        (region === "Région..." || d.region === region) && 
-        (sector === "Secteur..." || d.sector === sector)
-    );
-    document.getElementById('deals').innerHTML = filtered.map(d => `
-        <div class="deal-card">
-            <h3>${d.name}</h3>
-            <p>${d.region} • ${d.sector}</p>
-            <p>CA: €${d.ca.toLocaleString()} • EBITDA: €${d.ebitda.toLocaleString()}</p>
-            <button onclick="alert('Contactez-nous !')">📞 Contacter le vendeur</button>
-        </div>
-    `).join('');
+function contactVendeur(id) {
+    alert(`Contact pour SIREN: ${id}`);
 }
 
-// Affichage initial
-filterDeals();
+loadDeals();
