@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DealFlow Pro – Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <meta name="theme-color" content="#0066cc">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>🎯 DealFlow Pro</h1>
+        <nav>
+            <button onclick="toggleMenu()">☰ Menu</button>
+        </nav>
+    </header>
+
+    <!-- Menu déroulant mobile -->
+    <aside id="menu" class="hidden">
+        <a href="#filters">Filtres</a>
+        <a href="#simulator">Simulateur</a>
+        <a href="#deals">Deals</a>
+    </aside>
+
+    <!-- Filtres rapides -->
+    <section id="filters">
+        <select id="region" onchange="filterDeals()">
+            <option>Région...</option>
+            <option>Île-de-France</option>
+            <option>Auvergne-Rhône-Alpes</option>
+        </select>
+        <select id="sector" onchange="filterDeals()">
+            <option>Secteur...</option>
+            <option>Commerce</option>
+            <option>SaaS</option>
+        </select>
+        <button onclick="filterDeals()">🔍 Filtrer</button>
+    </section>
+
+    <!-- Simulateur crédit vendeur -->
+    <section id="simulator">
+        <h3>💰 Simulateur LBO</h3>
+        <input type="number" id="price" placeholder="Prix demandé">
+        <input type="number" id="ebitda" placeholder="EBITDA">
+        <button onclick="simulate()">Calculer</button>
+        <div id="result"></div>
+    </section>
+
+    <!-- Liste des deals -->
+    <section id="deals">
+        <!-- Contenu généré par JavaScript -->
+    </section>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>
