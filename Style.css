@@ -1,3 +1,13 @@
-body { font-family: Arial; margin: 0; padding: 1rem; background: #f6f6f6; }
-h1 { color: #0066cc; text-align: center; }
-.deal-card { background: white; padding: 1rem; margin: 1rem 0; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,.1); }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: system-ui, sans-serif; background: #f5f7fa; color: #333; }
+header { background: #0066cc; color: white; display: flex; justify-content: space-between; padding: 1rem; }
+button { background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; }
+nav { position: fixed; top: 0; left: -200px; width: 200px; height: 100vh; background: white; transition: 0.3s; box-shadow: 2px 0 5px rgba(0,0,0,.2); }
+nav a { display: block; padding: 1rem; color: #0066cc; text-decoration: none; border-bottom: 1px solid #eee; }
+nav.open { left: 0; }
+section { padding: 1.5rem; margin: 1rem 0; }
+input, button { padding: 0.75rem; margin: 0.5rem 0; width: 100%; border: 1px solid #ccc; border-radius: 4px; }
+button:hover { background: #0066cc; color: white; }
+.deal-card { background: white; margin: 0.5rem 0; padding: 1rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,.1); }
+.hidden { display: none; }
+@media (min-width: 768px) { nav { position: static; width: 200px; float: left; } }
