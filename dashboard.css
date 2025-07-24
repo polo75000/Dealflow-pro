@@ -1,0 +1,10 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: Arial; background: #f6f6f6; }
+header { background: #0066cc; color: white; padding: 1rem; display: flex; justify-content: space-between; }
+nav button { background: none; border: none; color: white; font-size: 1.5rem; }
+aside { position: fixed; top: 0; left: 0; width: 200px; height: 100%; background: white; box-shadow: 2px 0 5px rgba(0,0,0,.2); transform: translateX(-100%); transition: 0.3s; }
+aside a { display: block; padding: 1rem; color: #333; text-decoration: none; }
+.hidden { transform: translateX(-100%); }
+section { padding: 1rem; }
+.deal-card { background: white; padding: 1rem; margin: 0.5rem 0; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,.1); }
+@media (max-width: 600px) { aside { width: 100%; } }
