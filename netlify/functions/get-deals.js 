@@ -1,16 +1,14 @@
 // netlify/functions/get-deals.js
-const PAPPERS_KEY = "votre-cle-sandbox"; // à remplacer
-
 exports.handler = async () => {
-  const url = `https://api.pappers.fr/v2/recherche?api_token=${PAPPERS_KEY}&par_page=20&resultat_min=300000`;
+  const url = `https://api.pappers.fr/v2/recherche?api_token=VOTRE_CLE_SANDBOX&par_page=20&resultat_min=300000`;
   try {
     const res = await fetch(url);
     const data = await res.json();
-    return {
-      statusCode: 200,
-      body: JSON.stringify(data.entreprises || [])
-    };
-  } catch (e) {
-    return { statusCode: 200, body: JSON.stringify([]) };
+    return { statusCode: 200, body: JSON.stringify(data.entreprises || []) };
+  } catch {
+    // Mode démo si API indisponible
+    return { statusCode: 200, body: JSON.stringify([
+      { nom: "SARL Industrie", region: "Île-de-France", chiffre_affaires: 3200000, resultat: 680000 }
+    ]) };
   }
 };
