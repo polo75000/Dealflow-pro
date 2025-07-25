@@ -1,11 +1,24 @@
-/* Responsive mobile-first */
+/* Reset & base */
 * { margin: 0; padding: 0; box-sizing: border-box; }
+
 body { font-family: system-ui, Arial; background: #f5f7fa; color: #333; }
+
+/* Header & navigation */
 header { background: #0066cc; color: white; display: flex; justify-content: space-between; padding: 1rem; }
-button { background: #0066cc; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; }
-nav { position: fixed; top: 0; left: -200px; width: 200px; height: 100vh; background: white; transition: 0.3s; box-shadow: 2px 0 5px rgba(0,0,0,.2); }
-nav.open { left: 0; }
-nav a { display: block; padding: 1rem; color: #0066cc; text-decoration: none; border-bottom: 1px solid #eee; }
+header button { background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; }
+
+/* Menu déroulant */
+nav { position: fixed; top: 0; left: -200px; width: 200px; height: 100vh; background: white; transition: 0.3s; box-shadow: 2px 0 5px rgba(0,0,0,.2); z-index: 999; }
+nav.open { left: 0; } /* ouvert */
+nav.hidden { left: -200px; } /* fermé */
+
+/* Contenu principal */
+section { padding: 1.5rem; margin: 1rem 0; }
+input, button { padding: 0.75rem; margin: 0.5rem 0; width: 100%; border: 1px solid #ccc; border-radius: 4px; }
+button { background: #0066cc; color: white; cursor: pointer; }
+
+/* Cards */
 .deal-card { background: white; margin: 0.5rem 0; padding: 1rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,.1); }
+
+/* Responsive */
 @media (max-width: 600px) { nav { width: 100%; } }
-nav.hidden { left: -200px; }
