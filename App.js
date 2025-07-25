@@ -4,25 +4,12 @@ function toggleMenu() {
   document.getElementById('sideMenu').classList.toggle('open');
 }
 
-/* API backend */
+/* Appel backend API */
 async function loadDeals() {
   document.getElementById('dealList').innerHTML = "Chargement...";
-  const region = document.getElementById('regionFilter').value;
-  const minCA = document.getElementById('minCA').value;
-  try {
-    const res = await fetch('/.netlify/functions/get-deals');
-    const data = await res.json();
-    renderDeals(data);
-  } catch {
-    // Mode démo si API indisponible
-    renderDeals([
-      { nom: "SARL Industrie", region: "Île-de-France", chiffre_affaires: 3200000, resultat: 680000 }
-    ]);
-  }
-}
-
-function renderDeals(deals) {
-  document.getElementById('dealList').innerHTML = deals.map(d => `
+  const res = await fetch('/.netlify/functions/get-deals');
+  const data = await res.json();
+  document.getElementById('dealList').innerHTML = data.map(d => `
     <div class="deal-card">
       <h3>${d.nom}</h3>
       <p>${d.region} • CA: €${d.chiffre_affaires?.toLocaleString()} • EBITDA: €${d.resultat?.toLocaleString()}</p>
@@ -31,6 +18,7 @@ function renderDeals(deals) {
   `).join('');
 }
 
+/* Simulateur LBO */
 function simulate() {
   const price = Number(document.getElementById('price').value);
   const ebitda = Number(document.getElementById('ebitda').value);
