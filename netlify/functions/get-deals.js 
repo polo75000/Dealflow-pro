@@ -1,14 +1,17 @@
-// netlify/functions/get-deals.js
-exports.handler = async () => {
-  const url = `https://api.pappers.fr/v2/recherche?api_token=e312360db01e374f9740e4336884a51b690ec92b3e793a37&par_page=20&resultat_min=300000`;
+exports.handler = async (event) => {
+  const params = new URLSearchParams(event.queryString || "");
+  const url = `https://api.pappers.fr/v2/recherche?api_token=${
+    process.env.PAPPERS_KEY || "your_sandbox_key"
+  }&par_page=20&resultat_min=${params.get("minCA") || 300000}${
+    params.get("region") ? `&region=${params.get("region")}` : ""
+  }`;
   try {
     const res = await fetch(url);
     const data = await res.json();
     return { statusCode: 200, body: JSON.stringify(data.entreprises || []) };
   } catch {
-    // Mode démo si API indisponible
     return { statusCode: 200, body: JSON.stringify([
       { nom: "SARL Industrie", region: "Île-de-France", chiffre_affaires: 3200000, resultat: 680000 }
     ]) };
-  }
+  };
 };
