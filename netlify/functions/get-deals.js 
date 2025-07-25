@@ -1,0 +1,16 @@
+// netlify/functions/get-deals.js
+const PAPPERS_KEY = "votre-cle-sandbox"; // à remplacer
+
+exports.handler = async () => {
+  const url = `https://api.pappers.fr/v2/recherche?api_token=${PAPPERS_KEY}&par_page=20&resultat_min=300000`;
+  try {
+    const res = await fetch(url);
+    const data = await res.json();
+    return {
+      statusCode: 200,
+      body: JSON.stringify(data.entreprises || [])
+    };
+  } catch (e) {
+    return { statusCode: 200, body: JSON.stringify([]) };
+  }
+};
