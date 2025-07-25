@@ -1,6 +1,6 @@
 // netlify/functions/get-deals.js
 exports.handler = async () => {
-  const url = `https://api.pappers.fr/v2/recherche?api_token=VOTRE_CLE_SANDBOX&par_page=20&resultat_min=300000`;
+  const url = `https://api.pappers.fr/v2/recherche?api_token=e312360db01e374f9740e4336884a51b690ec92b3e793a37&par_page=20&resultat_min=300000`;
   try {
     const res = await fetch(url);
     const data = await res.json();
